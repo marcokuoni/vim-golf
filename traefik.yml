@@ -1,0 +1,29 @@
+http:
+routers:
+vimgolf:
+entryPoints: [websecure]
+rule: Host(`golf.example.com`)
+tls:
+certResolver: letsencrypt
+service: vimgolf-svc
+middlewares: [gzip, security-headers]
+
+
+vimgolf-api:
+entryPoints: [websecure]
+rule: Host(`api.golf.example.com`)
+tls:
+certResolver: letsencrypt
+service: vimgolf-api-svc
+middlewares: [gzip, security-headers]
+
+
+services:
+vimgolf-svc:
+loadBalancer:
+servers:
+- url: "http://127.0.0.1:8080" # Web (Nginx) Container über Host-Port
+vimgolf-api-svc:
+loadBalancer:
+servers:
+- url: "http://127.0.0.1:3001" # API (Node) Container über Host-Port

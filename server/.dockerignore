@@ -1,0 +1,16 @@
+# VCS & Env
+.git
+.gitignore
+.env*
+
+# Dependencies & Output
+node_modules
+dist
+npm-debug.log*
+yarn-*.log
+pnpm-debug.log*
+
+# OS/Editor
+.DS_Store
+.idea
+.vscode

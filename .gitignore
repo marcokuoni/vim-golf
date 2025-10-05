@@ -1,0 +1,40 @@
+# OS/Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node
+node_modules/
+
+# Build/Output
+server/dist/
+web/dist/
+
+# Env
+.env
+.env.*
+server/.env
+web/.env.local
+web/.env.*.local
+
+# Misc
+coverage/
+*.tgz
+*.patch
+*.orig
+*.rej
+
+# Docker
+*.pid
+
+# GitHub Actions local
+.github/*.DS_Store

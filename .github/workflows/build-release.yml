@@ -1,0 +1,53 @@
+name: build-release
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+
+      # --- build server (TS -> dist, prod deps) ---
+      - name: Build server
+        working-directory: server
+        run: |
+          npm ci
+          npm run build
+          npm ci --omit=dev
+          tar czf ../server.tgz \
+            dist package.json package-lock.json node_modules
+
+      # --- build web (static dist) ---
+      - name: Build web
+        working-directory: web
+        env:
+          VITE_SERVER: https://api.golf.lemonbrain.ch # <- anpassen
+        run: |
+          echo "VITE_SERVER=$VITE_SERVER" > .env.production
+          npm ci
+          npm run build
+          tar czf ../web.tgz dist
+
+      # --- create or update release tag ---
+      - name: Make tag
+        run: |
+          TS=$(date -u +%Y%m%d%H%M%S)
+          echo "REL_TAG=deploy-$TS" >> $GITHUB_ENV
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.REL_TAG }}
+          name: "Deploy ${{ env.REL_TAG }}"
+          draft: false
+          prerelease: false
+          files: |
+            server.tgz
+            web.tgz
