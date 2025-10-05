@@ -28,7 +28,7 @@ jobs:
       - name: Build web
         working-directory: web
         env:
-          VITE_SERVER: https://api.golf.lemonbrain.ch
+          VITE_SERVER: https://api-golf.lemonbrain.ch
         run: |
           echo "VITE_SERVER=$VITE_SERVER" > .env.production
           npm ci

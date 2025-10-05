@@ -26,4 +26,4 @@ Mehrere Sessions, Vim-Tipps und Challenges mit Live-Leaderboard. Admin erstellt 
 ## Deploy
 
 - Push auf `main` → GH Actions baut Images → pusht nach GHCR → verbindet per SSH → `docker compose up -d` auf dem Server.
-- Danach ist die App unter `https://golf.lemonbrain.ch` (Web) und `wss/https://api.golf.lemonbrain.ch` (Socket.IO) erreichbar.
+- Danach ist die App unter `https://golf.lemonbrain.ch` (Web) und `wss/https://api-golf.lemonbrain.ch` (Socket.IO) erreichbar.
