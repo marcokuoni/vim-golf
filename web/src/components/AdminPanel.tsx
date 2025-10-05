@@ -10,7 +10,11 @@ export default function AdminPanel() {
   const [name, setName] = useState("Main Room");
 
   useEffect(() => {
-    fetch(`${(window as any).__SERVER__ ?? "http://localhost:3001"}/challenges`)
+    const base =
+      (window as any).__SERVER__ ||
+      import.meta.env.VITE_SERVER ||
+      "http://localhost:3001";
+    fetch(`${base}/challenges`)
       .then((r) => r.json())
       .then(setChallenges);
     const handler = (state: RoomState) => setRoom({ ...state });
