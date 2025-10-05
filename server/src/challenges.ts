@@ -20,15 +20,6 @@ export const challenges: Challenge[] = [
     penalties: { paste: 200 },
   },
   {
-    id: "template",
-    title: "Title",
-    description: "Description",
-    startText: `Start`,
-    targetText: `Target`,
-    timeLimitSec: 75,
-    penalties: { paste: 200 },
-  },
-  {
     id: "nix-sort-inputs",
     title: "flake.nix inputs alphabetisch",
     description:
