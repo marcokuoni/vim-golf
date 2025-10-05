@@ -3,11 +3,10 @@ import type { Challenge } from "./types.js";
 export const challenges: Challenge[] = [
   {
     id: "js-var-to-let",
-    title: "var → let (nur require-Zeilen)",
-    description:
-      "Wandle alle „var“ zu „let“, aber nur in Zeilen, die „= require(“ enthalten.",
+    title: "var → let",
+    description: "Wandle alle „var“ zu „let“.",
     startText: `var fs = require('fs')\nvar path = require('path')\nvar x = 1\nfunction demo(){\n  var y = require('y')\n  return x + y\n}`,
-    targetText: `let fs = require('fs')\nlet path = require('path')\nvar x = 1\nfunction demo(){\n  let y = require('y')\n  return x + y\n}`,
+    targetText: `let fs = require('fs')\nlet path = require('path')\nlet x = 1\nfunction demo(){\n  let y = require('y')\n  return x + y\n}`,
     timeLimitSec: 90,
     penalties: { paste: 200 },
   },
