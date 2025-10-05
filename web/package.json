@@ -9,16 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.2",
     "@replit/codemirror-vim": "^6.0.6",
+    "@uiw/react-codemirror": "^4.23.7",
+    "classnames": "^2.5.1",
     "qrcode.react": "^3.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "socket.io-client": "^4.7.5",
-    "@uiw/react-codemirror": "^4.23.7",
-    "@codemirror/lang-javascript": "^6.2.2",
-    "classnames": "^2.5.1"
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
+    "@types/node": "^24.6.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.3",
