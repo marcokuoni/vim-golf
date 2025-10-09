@@ -2,42 +2,79 @@ import type { Challenge } from "./types.js";
 
 export const challenges: Challenge[] = [
   {
-    id: "js-var-to-let",
-    title: "var → let",
-    description: "Wandle alle „var“ zu „let“.",
-    startText: `var fs = require('fs')\nvar path = require('path')\nvar x = 1\nfunction demo(){\n  var y = require('y')\n  return x + y\n}`,
-    targetText: `let fs = require('fs')\nlet path = require('path')\nlet x = 1\nfunction demo(){\n  let y = require('y')\n  return x + y\n}`,
+    id: "textobjekte-rocken",
+    title: "Textobjekte rocken",
+    description: '«ci"», «daw» & Co.: Textobjekte rocken',
+    startText: `const msg = "hello world";
+function area(w, h) { return (w * h) + (w + h); }
+const path = '/var/www/app';`,
+    targetText: `const msg = "Hi Vim";
+function area(w, h) { return (w * h); }
+const path = '/var/www';`,
     timeLimitSec: 90,
     penalties: { paste: 200 },
   },
   {
-    id: "md-promote-headings",
-    title: "Überschriften eine Stufe erhöhen",
-    description: "Erhöhe alle H1 zu H2 innerhalb des Abschnitts „Intro“.",
-    startText: `# Title\n\n## Intro\n# Aufgabe A\nText\n# Aufgabe B\nText\n\n## Outro\n# Ende`,
-    targetText: `# Title\n\n## Intro\n## Aufgabe A\nText\n## Aufgabe B\nText\n\n## Outro\n# Ende`,
+    id: "kombinieren",
+    title: "Kombinieren",
+    description: "Bewegungen + Operatoren kombinieren",
+    startText: `# Title
+
+## Intro
+# Aufgabe A
+Text
+# Aufgabe B
+Text
+
+## Outro
+# Ende`,
+    targetText: `# Title
+
+## Intro
+## Aufgabe A
+Text
+## Aufgabe B
+Text
+
+## Outro
+# Ende`,
     timeLimitSec: 75,
     penalties: { paste: 200 },
   },
   {
-    id: "nix-sort-inputs",
-    title: "flake.nix inputs alphabetisch",
-    description:
-      "Sortiere die Inputs-Keys alphabetisch (nur die Zeilen mit Inputs).",
-    startText: `{
-  inputs = {
-    nixpkgs-url.url = "github:NixOS/nixpkgs";
-    flake-utils.url = "github:numtide/flake-utils";
-    home-manager.url = "github:nix-community/home-manager";
-  };
-}`,
-    targetText: `{
-  inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    home-manager.url = "github:nix-community/home-manager";
-    nixpkgs-url.url = "github:NixOS/nixpkgs";
-  };
-}`,
+    id: "blockmodus",
+    title: "blockmodus",
+    description: "Visueller Blockmodus zum Spalten-Editieren",
+    startText: `item one
+item two
+item three`,
+    targetText: `// TODO: item one
+// TODO: item two
+// TODO: item three`,
+    timeLimitSec: 60,
+    penalties: { paste: 200 },
+  },
+  {
+    id: "suchen-ersetzen",
+    title: "Suchen & Ersetzen",
+    description: "Suchen & Ersetzen mit «%s» und «\\v»",
+    startText: `const user = { user_id: 1, is_active: false };
+console.log(user.user_id, user.is_active);`,
+    targetText: `const user = { userId: 1, isActive: false };
+console.log(user.userId, user.isActive);`,
+    timeLimitSec: 60,
+    penalties: { paste: 200 },
+  },
+  {
+    id: "makros",
+    title: "Makros",
+    description: "Makros aufnehmen und abspielen",
+    startText: `apple
+banana
+cherry`,
+    targetText: `apple, fruit
+banana, fruit
+cherry, fruit`,
     timeLimitSec: 60,
     penalties: { paste: 200 },
   },
