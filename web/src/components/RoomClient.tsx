@@ -21,15 +21,19 @@ export default function RoomClient() {
     const onStarted = ({
       challenge,
       endsAt,
+      state,
     }: {
       challenge: Challenge;
       endsAt: number;
+      state: RoomState;
     }) => {
       setChallenge(challenge);
       setBuffer(challenge.startText);
       setTarget(challenge.targetText);
       setEndsAt(endsAt);
       scoring.current.start();
+      console.log(state);
+      setRoom({ ...state });
     };
     socket.on("room:update", onUpdate);
     socket.on("round:started", onStarted);

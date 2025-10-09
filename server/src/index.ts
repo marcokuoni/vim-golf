@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
     room.currentChallengeId = ch.id;
     room.roundEndsAt = endsAt;
     room.leaderboard = [];
-    io.to(roomId).emit("round:started", { challenge: ch, endsAt });
+    io.to(roomId).emit("round:started", { challenge: ch, endsAt, state: room });
   });
 
   socket.on(
@@ -58,6 +58,7 @@ io.on("connection", (socket) => {
     ) => {
       const room = rooms.get(roomId);
       if (!room || !room.currentChallengeId) return;
+      if (room.leaderboard.find((l) => l.userId === socket.id)) return;
       const ch = challenges.find((c) => c.id === room.currentChallengeId)!;
       const nickname = (socket as any).nickname || "anon";
 
