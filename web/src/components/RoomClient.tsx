@@ -85,12 +85,15 @@ export default function RoomClient() {
           </button>
         </div>
       ) : (
-        <div className="bg-white p-4 rounded-xl border space-y-3">
+        <div className="bg-white p-4 rounded-xl border space-y-5">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm text-gray-500">Challenge</div>
               <div className="font-semibold">
                 {challenge ? challenge.title : "Warte auf Start"}
+              </div>
+              <div className="text-sm text-gray-600">
+                {challenge ? challenge.description : ""}
               </div>
             </div>
             <div className="text-right">
@@ -101,16 +104,7 @@ export default function RoomClient() {
 
           {challenge && (
             <>
-              <div className="text-sm text-gray-600">
-                {challenge.description}
-              </div>
-              <div className="grid md:grid-cols-2 gap-3">
-                <div>
-                  <div className="text-xs text-gray-500 mb-1">Start</div>
-                  <pre className="p-2 bg-gray-50 rounded border overflow-auto whitespace-pre-wrap">
-                    {challenge.startText}
-                  </pre>
-                </div>
+              <div className="grid md:grid-cols-1 gap-3">
                 <div>
                   <div className="text-xs text-gray-500 mb-1">Ziel</div>
                   <pre className="p-2 bg-gray-50 rounded border overflow-auto whitespace-pre-wrap">
