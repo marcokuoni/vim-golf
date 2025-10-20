@@ -1,32 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { RoomState } from "../types";
 
 export default function Leaderboard({ room }: { room: RoomState }) {
   return (
-    <div className="bg-white rounded-xl border p-4">
-      <h3 className="font-semibold mb-2">Leaderboard</h3>
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="text-left text-gray-500">
-            <th className="py-1">#</th>
-            <th className="py-1">Name</th>
-            <th className="py-1">Score</th>
-            <th className="py-1">Keys</th>
-            <th className="py-1">Zeit</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div className="grid md:grid-cols-2 gap-4">
+      <div className="border rounded-xl p-3">
+        <div className="font-semibold mb-2">Aktuelle Runde</div>
+        <ol className="space-y-1">
           {room.leaderboard.map((r, i) => (
-            <tr key={r.userId} className={i < 3 ? "font-semibold" : ""}>
-              <td className="py-1">{i + 1}</td>
-              <td className="py-1">{r.nickname}</td>
-              <td className="py-1">{r.score}</td>
-              <td className="py-1">{r.keystrokes}</td>
-              <td className="py-1">{(r.timeMs / 1000).toFixed(2)}s</td>
-            </tr>
+            <li key={r.userId} className="flex justify-between">
+              <span>
+                {i + 1}. {r.nickname}
+              </span>
+              <span className="font-mono">{r.score}</span>
+            </li>
           ))}
-        </tbody>
-      </table>
+        </ol>
+      </div>
+      <div className="border rounded-xl p-3">
+        <div className="font-semibold mb-2">Gesamtrangliste</div>
+        <ol className="space-y-1">
+          {room.leaderboardSum.map((s, i) => (
+            <li key={s.userId} className="flex justify-between">
+              <span>
+                {i + 1}. {s.nickname}
+                <span className="text-gray-500"> · {s.rounds} Runde/n</span>
+              </span>
+              <span className="font-mono">
+                {s.totalScore}{" "}
+                <span className="text-gray-500">(best {s.bestScore})</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }

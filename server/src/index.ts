@@ -22,7 +22,8 @@ const rooms = new Map<string, RoomState>();
 io.on("connection", (socket) => {
   socket.on("room:create", (name: string, cb?: (roomId: string) => void) => {
     const id = nanoid(6);
-    rooms.set(id, { id, name, leaderboard: [] });
+    rooms.set(id, { id, name, leaderboard: [], leaderboardSum: [] });
+    socket.join(id);
     cb?.(id);
   });
 
@@ -47,6 +48,7 @@ io.on("connection", (socket) => {
     room.currentChallengeId = ch.id;
     room.roundEndsAt = endsAt;
     room.leaderboard = [];
+    room.leaderboardSum ??= [];
     io.to(roomId).emit("round:started", { challenge: ch, endsAt, state: room });
   });
 
@@ -75,6 +77,25 @@ io.on("connection", (socket) => {
         finishedAt: Date.now(),
       });
       room.leaderboard.sort((a, b) => a.score - b.score);
+
+      room.leaderboardSum ??= [];
+      const sum = room.leaderboardSum.find((s) => s.userId === socket.id);
+      if (sum) {
+        sum.totalScore += score;
+        sum.rounds += 1;
+        sum.bestScore = Math.min(sum.bestScore, score);
+        sum.nickname = nickname; // keep display name fresh
+      } else {
+        room.leaderboardSum.push({
+          userId: socket.id,
+          nickname,
+          totalScore: score,
+          rounds: 1,
+          bestScore: score,
+        });
+      }
+      room.leaderboardSum.sort((a, b) => a.totalScore - b.totalScore);
+
       io.to(roomId).emit("room:update", room);
     },
   );

@@ -32,7 +32,6 @@ export default function RoomClient() {
       setTarget(challenge.targetText);
       setEndsAt(endsAt);
       scoring.current.start();
-      console.log(state);
       setRoom({ ...state });
     };
     socket.on("room:update", onUpdate);
@@ -62,6 +61,18 @@ export default function RoomClient() {
       });
     }
   }, [solved]);
+
+  useEffect(() => {
+    if (timeLeft === "00:00" && roomId && challenge) {
+      scoring.current.addPastePenalty(200);
+      const { timeMs } = scoring.current.result();
+      socket.emit("round:submit", roomId, {
+        keystrokes: scoring.current.keystrokes + scoring.current.pastePenalty,
+        timeMs,
+        buffer: challenge.targetText,
+      });
+    }
+  }, [timeLeft]);
 
   return (
     <div className="space-y-4">

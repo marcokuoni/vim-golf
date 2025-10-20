@@ -17,9 +17,17 @@ export default function AdminPanel() {
     fetch(`${base}/challenges`)
       .then((r) => r.json())
       .then(setChallenges);
-    const handler = (state: RoomState) => setRoom({ ...state });
-    socket.on("room:update", handler);
-    return () => void socket.off("room:update", handler);
+    const onUpdate = (state: RoomState) => setRoom({ ...state });
+    const onStarted = ({ state }: { state: RoomState }) =>
+      setRoom({ ...state });
+
+    socket.on("room:update", onUpdate);
+    socket.on("round:started", onStarted);
+
+    return () => {
+      socket.off("room:update", onUpdate);
+      socket.off("round:started", onStarted);
+    };
   }, []);
 
   const roomUrl = useMemo(
@@ -50,7 +58,7 @@ export default function AdminPanel() {
               className="px-3 py-1 rounded bg-black text-white"
               onClick={() =>
                 socket.emit("room:create", name, (id: string) => {
-                  setRoom({ id, name, leaderboard: [] });
+                  setRoom({ id, name, leaderboard: [], leaderboardSum: [] });
                 })
               }
             >
