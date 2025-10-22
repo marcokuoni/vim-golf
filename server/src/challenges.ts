@@ -78,4 +78,107 @@ cherry, fruit`,
     timeLimitSec: 60,
     penalties: { paste: 200 },
   },
+  {
+    id: "wiederholen",
+    title: "Wiederholen",
+    description: "Bewegungen/Aktionen n mal wiederholen",
+    startText: `const twoRowsNineColumns = [
+  [],
+  []
+];`,
+    targetText: `const twoRowsNineColumns = [
+  [[1],[1],[1],[1],[1],[1],[1],[1],[1],],
+  [["two"],["two"],["two"],["two"],["two"],["two"],["two"],["two"],["two"],]
+];`,
+    timeLimitSec: 60,
+    penalties: { paste: 200 },
+  }, 
+  {
+    id: "formatieren",
+    title: "Formatieren",
+    description: "Code schön ausrichten",
+    startText: `  const amIPrettyYet = {
+eyes = "purple",
+  height = 164;
+};
+
+       function hello() {
+console.log("Hello world!");
+                                          console.log("Hello from far away...");
+}
+
+    hello();`,
+    targetText: `const amIPrettyYet = {
+  eyes = "purple",
+  height = 164,
+};
+
+function hello() {
+  console.log("Hello world!");
+  console.log("Hello from far away...");
+}
+
+hello();`,
+    timeLimitSec: 60,
+  }, 
+  /*
+   * Doesn't work on web because shortcuts like Ctrl+a conflict
+   * Probably solvable through intercepting input via js?
+  {
+    id: "auf-ab-zaehlen",
+    title: "Auf- und Abzählen",
+    description: "Zahlen, Zahlen, Zahlen",
+    startText: `8 3 2 9 0 6`,
+    targetText: `7 4 2 6 2 5 `,
+    timeLimitSec: 60,
+    penalties: { paste: 200 },
+  },
+  {
+    id: "aufnummerieren-blockmodus",
+    title: "Aufnummerieren im Blockmodus",
+    description: "Mehrere Zahlen Reihenweise aufzählen",
+    startText: `0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0`,
+    targetText: `1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20`,
+    timeLimitSec: 60,
+    penalties: { paste: 200 },
+  },
+  */
 ];

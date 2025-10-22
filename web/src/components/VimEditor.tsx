@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { vim } from "@replit/codemirror-vim";
@@ -15,7 +15,6 @@ export default function VimEditor({
   onPaste?: () => void;
 }) {
   const extensions = useMemo(() => [javascript(), vim()], []);
-
   useEffect(() => {
     const handler = (e: ClipboardEvent) => {
       // Global Paste-Block optional
@@ -36,7 +35,18 @@ export default function VimEditor({
         height="300px"
         theme="light"
         extensions={extensions}
-        basicSetup={{ lineNumbers: true }}
+        basicSetup={{
+          lineNumbers: true,
+          closeBrackets: false,
+          defaultKeymap: true,
+          foldKeymap: true,
+          completionKeymap: true,
+          highlightSelectionMatches: true,
+          bracketMatching: true,
+          indentOnInput: false,
+          allowMultipleSelections: true,
+          history: true,
+        }}
       />
     </div>
   );
