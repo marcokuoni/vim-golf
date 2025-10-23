@@ -41,7 +41,11 @@ export default function VimEditor({
         height="300px"
         theme="light"
         extensions={extensions}
-        basicSetup={{ lineNumbers: true }}
+        basicSetup={{
+          lineNumbers: true,
+          closeBrackets: false,
+          indentOnInput: false,
+        }}
       />
     </div>
   );

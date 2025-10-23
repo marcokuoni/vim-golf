@@ -38,3 +38,7 @@ coverage/
 
 # GitHub Actions local
 .github/*.DS_Store
+
+# Nix
+result
+.direnv
