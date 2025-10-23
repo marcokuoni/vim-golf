@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo } from "react";
-import CodeMirror from "@uiw/react-codemirror";
+import CodeMirror, { keymap } from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { vim } from "@replit/codemirror-vim";
+import { standardKeymap } from "@codemirror/commands";
+import { Prec } from "@codemirror/state";
 
 export default function VimEditor({
   value,
@@ -14,7 +16,10 @@ export default function VimEditor({
   onKey?: () => void;
   onPaste?: () => void;
 }) {
-  const extensions = useMemo(() => [javascript(), vim()], []);
+  const extensions = useMemo(
+    () => [javascript(), Prec.highest(vim()), keymap.of(standardKeymap)],
+    [],
+  );
 
   useEffect(() => {
     const handler = (e: ClipboardEvent) => {
