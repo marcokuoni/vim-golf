@@ -121,13 +121,48 @@ function hello() {
 hello();`,
     timeLimitSec: 60,
   }, 
-  /*
-   * Doesn't work on web because shortcuts like Ctrl+a conflict
-   * Probably solvable through intercepting input via js?
+  {
+    id: "zusammenfügen",
+    title: "Zeilen zusammenfügen",
+    description: "Come together, Right now, Over me",
+    startText: `const friends = [
+
+  "John Lennon",
+
+  "Paul McCartney",
+
+  "George Harrison",
+
+  "Ringo Starr"
+
+];`,
+    targetText: `const friends = [ "John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr" ];`,
+    timeLimitSec: 60,
+  }, 
+  {
+    id: "vervollständigung",
+    title: "Vervollständigung",
+    description: "Falls man mal zu faul ist, um zu tippen - ACHTUNG: Es könnten nicht alle Bindings funktionieren",
+    startText: `const complete = {
+  veryVeryLongKeyThatShouldHaveBeenShorter: "9 + 10",
+  anotherEvenLongerKeyThatShouldHaveBeenShorter: 21,
+};
+
+console.log("What's " + complete. + "?");
+console.log(complete.);`,
+    targetText: `const complete = {
+  veryVeryLongKeyThatShouldHaveBeenShorter: "9 + 10",
+  anotherEvenLongerKeyThatShouldHaveBeenShorter: 21,
+};
+
+console.log("What's " + complete.veryVeryLongKeyThatShouldHaveBeenShorter + "?");
+console.log(complete.anotherEvenLongerKeyThatShouldHaveBeenShorter);`,
+    timeLimitSec: 60,
+  }, 
   {
     id: "auf-ab-zaehlen",
     title: "Auf- und Abzählen",
-    description: "Zahlen, Zahlen, Zahlen",
+    description: "Zahlen, Zahlen, Zahlen - ACHTUNG: Es könnten nicht alle Bindings funktionieren",
     startText: `8 3 2 9 0 6`,
     targetText: `7 4 2 6 2 5 `,
     timeLimitSec: 60,
@@ -136,7 +171,7 @@ hello();`,
   {
     id: "aufnummerieren-blockmodus",
     title: "Aufnummerieren im Blockmodus",
-    description: "Mehrere Zahlen Reihenweise aufzählen",
+    description: "Mehrere Zahlen Reihenweise aufzählen - ACHTUNG: Es könnten nicht alle Bindings funktionieren",
     startText: `0
 0
 0
@@ -180,5 +215,4 @@ hello();`,
     timeLimitSec: 60,
     penalties: { paste: 200 },
   },
-  */
 ];
