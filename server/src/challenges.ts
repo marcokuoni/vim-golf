@@ -140,79 +140,38 @@ hello();`,
     timeLimitSec: 60,
   }, 
   {
-    id: "vervollständigung",
-    title: "Vervollständigung",
-    description: "Falls man mal zu faul ist, um zu tippen - ACHTUNG: Es könnten nicht alle Bindings funktionieren",
-    startText: `const complete = {
-  veryVeryLongKeyThatShouldHaveBeenShorter: "9 + 10",
-  anotherEvenLongerKeyThatShouldHaveBeenShorter: 21,
-};
-
-console.log("What's " + complete. + "?");
-console.log(complete.);`,
-    targetText: `const complete = {
-  veryVeryLongKeyThatShouldHaveBeenShorter: "9 + 10",
-  anotherEvenLongerKeyThatShouldHaveBeenShorter: 21,
-};
-
-console.log("What's " + complete.veryVeryLongKeyThatShouldHaveBeenShorter + "?");
-console.log(complete.anotherEvenLongerKeyThatShouldHaveBeenShorter);`,
-    timeLimitSec: 60,
-  }, 
-  {
     id: "auf-ab-zaehlen",
     title: "Auf- und Abzählen",
-    description: "Zahlen, Zahlen, Zahlen - ACHTUNG: Es könnten nicht alle Bindings funktionieren",
+    description: "Zahlen, Zahlen, Zahlen",
     startText: `8 3 2 9 0 6`,
     targetText: `7 4 2 6 2 5 `,
     timeLimitSec: 60,
     penalties: { paste: 200 },
   },
   {
-    id: "aufnummerieren-blockmodus",
-    title: "Aufnummerieren im Blockmodus",
-    description: "Mehrere Zahlen Reihenweise aufzählen - ACHTUNG: Es könnten nicht alle Bindings funktionieren",
-    startText: `0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0
-0`,
-    targetText: `1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20`,
+    id: "auffindbar",
+    title: "Auffindbar",
+  description: "Zielsicher durch den Text manövrieren mit «f» und «F»",
+    startText: `const path = "/usr/sbin\\cowsay";
+const Message = "The steaks are high!";
+require("child_process").exec(math + " " + pessage, () => null);`,
+    targetText: `const path = "/usr/sbin/cowsay";
+const message = "The steaks are high!";
+require("child_process").exec(path + " " + message, () => null);`,
     timeLimitSec: 60,
     penalties: { paste: 200 },
   },
+  {
+    id: "grossbuchstaben",
+    title: "Gross- und Kleinbuchstaben - die Versatilität des «g»",
+    description: "BITTE LEISE REDEN!",
+    startText: `console.log("PSSSST...");
+console.log("namen schreibt man gross");
+console.log("bis hier, und nicht weiter");`,
+    targetText: `console.log("psssst...");
+console.log("NAMEN schreibt man gross");
+console.log("BIS HIER, und nicht weiter");`,
+    timeLimitSec: 60,
+    penalties: { paste: 200 },
+  }
 ];

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import CodeMirror, { keymap } from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { vim } from "@replit/codemirror-vim";
@@ -43,7 +43,7 @@ export default function VimEditor({
         basicSetup={{
           lineNumbers: true,
           closeBrackets: false,
-          defaultKeymap: true,
+          indentOnInput: false,
         }}
       />
     </div>
